@@ -2,7 +2,10 @@
 import React, { useState } from 'react';
 import './styles.css'; // Import your styles.css file
 
+import { useNavigate } from "react-router-dom";
+
 const Records = () => {
+  const navigate = useNavigate();
   const [records, setRecords] = useState([
     // Sample records, replace with your data
     { id: 1, name: 'John Doe', dateCompleted: '2023-01-01', rating: 4, notes: 'Lorem ipsum', },
@@ -10,17 +13,15 @@ const Records = () => {
     // Add more records as needed
   ]);
 
-  const handleEdit = (id) => {
+  const handleEdit = (record) => {
     // Implement edit functionality, e.g., navigate to an edit page or open a modal
-    console.log(`Edit record with id: ${id}`);
+    navigate(`/records/${record.id}`, { state: { record } });
   };
 
   return (
     <div className="records-container">
       <div className="records-header">
         <h1 className="records-title">Records</h1>
-        <div className="spacer"></div>
-        <button className="back-button"> Back </button>
       </div>
       <div className="records-list">
         {records.map((record) => (
@@ -32,7 +33,7 @@ const Records = () => {
               <p>Rating: {record.rating}</p>
               <p>Notes: {record.notes}</p>
             </div>
-            <button className="edit-button" onClick={() => handleEdit(record.id)}>Edit</button>
+            <button className="edit-button" onClick={() => handleEdit(record)}>Edit</button>
           </div>
         ))}
       </div>

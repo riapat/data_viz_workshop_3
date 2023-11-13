@@ -12,7 +12,7 @@
   
   .records-header {
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     margin-bottom: 20px;
     text-align: center;
@@ -45,6 +45,7 @@
   .records-list {
     display: flex;
     flex-direction: column;
+    text-align: center;
   }
   
   .record-item {
@@ -65,10 +66,12 @@
     background-color: #000; /* Background color for the entire left part of the block */
     border-radius: 5px; /* Rounded corners for the entire block */
     padding: 8px;
+    margin-left: 5%;
   }
   
   .record-details {
     flex-grow: 1;
+    margin-right: 5%;
   }
   
   .edit-button {

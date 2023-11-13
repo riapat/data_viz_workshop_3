@@ -1,14 +1,23 @@
 // UpdateRecord/index.js
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './styles.css'; // Import your styles.css file
 
-const UpdateRecord = ({ record, onCancel, onSave }) => {
+import { useParams, useNavigate, useLocation } from "react-router-dom";
+
+const UpdateRecord = ({ onCancel, onSave }) => {
+  const navigate = useNavigate();
+  //location is used to get the state passed from the previous page
+  const location = useLocation();
+  const { record } = location.state || {};
+  // params is used to get the id from the url
+  const { id } = useParams();
+
   const [updatedRecord, setUpdatedRecord] = useState({
-    id: 'record.id',
-    name: 'record.name',
-    dateCompleted: 'record.dateCompleted',
-    rating: 'record.rating',
-    notes: 'record.notes',
+    id: record.id,
+    name: record.name,
+    dateCompleted: record.dateCompleted,
+    rating: record.rating,
+    notes: record.notes,
   });
 
   const [formErrors, setFormErrors] = useState({
@@ -17,6 +26,18 @@ const UpdateRecord = ({ record, onCancel, onSave }) => {
     rating: '',
     notes: '',
   });
+
+  useEffect(() => {
+    if (record) {
+      setUpdatedRecord({
+        id: record.id,
+        name: record.name,
+        dateCompleted: record.dateCompleted,
+        rating: record.rating,
+        notes: record.notes,
+      });
+    }
+  }, [record]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -61,13 +82,15 @@ const UpdateRecord = ({ record, onCancel, onSave }) => {
   };
 
   const handleCancel = () => {
-    onCancel();
+    // onCancel();
+    navigate('/records');
   };
 
   const handleSave = () => {
     if (validateForm()) {
-        onSave(updatedRecord);
+        // onSave(updatedRecord);
       }
+    navigate('/records');
   };
 
   return (
