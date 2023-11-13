@@ -4,11 +4,18 @@ import './styles.css'; // Import your styles.css file
 
 const UpdateRecord = ({ record, onCancel, onSave }) => {
   const [updatedRecord, setUpdatedRecord] = useState({
-    id: record.id,
-    name: record.name,
-    dateCompleted: record.dateCompleted,
-    rating: record.rating,
-    notes: record.notes,
+    id: 'record.id',
+    name: 'record.name',
+    dateCompleted: 'record.dateCompleted',
+    rating: 'record.rating',
+    notes: 'record.notes',
+  });
+
+  const [formErrors, setFormErrors] = useState({
+    name: '',
+    dateCompleted: '',
+    rating: '',
+    notes: '',
   });
 
   const handleInputChange = (e) => {
@@ -17,6 +24,40 @@ const UpdateRecord = ({ record, onCancel, onSave }) => {
       ...prevRecord,
       [name]: value,
     }));
+
+    setFormErrors((prevErrors) => ({
+        ...prevErrors,
+        [name]: '',
+      }));
+  };
+
+  const validateForm = () => {
+    let valid = true;
+    const newErrors = { ...formErrors };
+
+    // Basic validation, you can add more specific checks based on your requirements
+    if (!updatedRecord.name.trim()) {
+      newErrors.name = 'Name is required';
+      valid = false;
+    }
+
+    if (!updatedRecord.dateCompleted) {
+      newErrors.dateCompleted = 'Date Completed is required';
+      valid = false;
+    }
+
+    if (updatedRecord.rating < 1 || updatedRecord.rating > 5) {
+      newErrors.rating = 'Rating must be between 1 and 5';
+      valid = false;
+    }
+
+    if (!updatedRecord.notes.trim()) {
+      newErrors.notes = 'Notes are required';
+      valid = false;
+    }
+
+    setFormErrors(newErrors);
+    return valid;
   };
 
   const handleCancel = () => {
@@ -24,7 +65,9 @@ const UpdateRecord = ({ record, onCancel, onSave }) => {
   };
 
   const handleSave = () => {
-    onSave(updatedRecord);
+    if (validateForm()) {
+        onSave(updatedRecord);
+      }
   };
 
   return (
@@ -39,7 +82,7 @@ const UpdateRecord = ({ record, onCancel, onSave }) => {
           value={updatedRecord.name}
           onChange={handleInputChange}
         />
-
+        <span className="error-message">{formErrors.name}</span>
         <label htmlFor="dateCompleted">Date Completed:</label>
         <input
           type="date"
@@ -48,6 +91,7 @@ const UpdateRecord = ({ record, onCancel, onSave }) => {
           value={updatedRecord.dateCompleted}
           onChange={handleInputChange}
         />
+        <span className="error-message">{formErrors.dateCompleted}</span>
 
         <label htmlFor="rating">Rating:</label>
         <input
@@ -57,6 +101,7 @@ const UpdateRecord = ({ record, onCancel, onSave }) => {
           value={updatedRecord.rating}
           onChange={handleInputChange}
         />
+        <span className="error-message">{formErrors.rating}</span>
 
         <label htmlFor="notes">Notes:</label>
         <textarea
@@ -65,6 +110,7 @@ const UpdateRecord = ({ record, onCancel, onSave }) => {
           value={updatedRecord.notes}
           onChange={handleInputChange}
         ></textarea>
+        <span className="error-message">{formErrors.notes}</span>
 
         <div className="button-container">
           <button type="button" onClick={handleCancel}>

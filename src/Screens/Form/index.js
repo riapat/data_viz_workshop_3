@@ -9,17 +9,66 @@ const Form = () => {
         notes: '',
     })
 
+    const [formErrors, setFormErrors] = useState({
+        name: '',
+        dateCompleted: '',
+        rating: '',
+        notes: '',
+      });
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData((prevState) => ({
             ...prevState,
             [name]: value,
-        }))
+        }));
+
+        setFormErrors((prevErrors) => ({
+            ...prevErrors,
+            [name]: '',
+          }));
     }
+
+    const validateForm = () => {
+        let valid = true;
+        const newErrors = { ...formErrors };
+    
+        // Basic validation, you can add more specific checks based on your requirements
+        if (!formData.name.trim()) {
+          newErrors.name = 'Name is required';
+          valid = false;
+        }
+    
+        if (!formData.dateCompleted) {
+          newErrors.dateCompleted = 'Date Completed is required';
+          valid = false;
+        }
+
+        if (!formData.notes.trim()) {
+            newErrors.notes = 'Notes are required';
+            valid = false;
+          }
+    
+        setFormErrors(newErrors);
+        return valid;
+      };
 
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(formData);
+
+        if (validateForm()) {
+            // Form is valid, log the data and show an alert
+            console.log(formData);
+            setFormData({
+              name: '',
+              dateCompleted: '',
+              rating: 1,
+              notes: '',
+            });
+            alert('Information logged in Records!');
+          }
+
         setFormData({
             name: '',
             dateCompleted: '',
@@ -43,6 +92,7 @@ const Form = () => {
                         value={formData.name}
                         onChange={handleChange}
                     />
+                    <span className="error-message">{formErrors.name}</span>
                 </label>
                 <br />
 
@@ -54,6 +104,7 @@ const Form = () => {
                         value={formData.dateCompleted}
                         onChange={handleChange}
                     />
+                    <span className="error-message">{formErrors.dateCompleted}</span>
                 </label>
                 <br />
 
@@ -76,6 +127,7 @@ const Form = () => {
                         value={formData.notes}
                         onChange={handleChange}
                     />
+                    <span className="error-message">{formErrors.notes}</span>
                 </label>
                 <br />
 

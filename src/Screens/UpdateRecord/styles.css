@@ -40,6 +40,12 @@
     justify-content: space-between;
     margin-top: 20px;
   }
+
+  .error-message {
+    color: #ff0000; /* Red color for the error message */
+    font-size: 90%;
+    margin-top: 0.5%;
+  }
   
   button {
     background-color: #007bff;
