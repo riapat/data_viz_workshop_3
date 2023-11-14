@@ -4,11 +4,11 @@ import './styles.css'; // Import your styles.css file
 
 const UpdateRecord = ({ record, onCancel, onSave }) => {
   const [updatedRecord, setUpdatedRecord] = useState({
-    id: 'record.id',
-    name: 'record.name',
-    dateCompleted: 'record.dateCompleted',
-    rating: 'record.rating',
-    notes: 'record.notes',
+    id: record.id,
+    name: record.name,
+    dateCompleted: record.dateCompleted,
+    rating: record.rating,
+    notes: record.notes,
   });
 
   const [formErrors, setFormErrors] = useState({
@@ -61,12 +61,12 @@ const UpdateRecord = ({ record, onCancel, onSave }) => {
   };
 
   const handleCancel = () => {
-    onCancel();
+    // Implement cancel functionality, e.g., navigate back to the records page
   };
 
   const handleSave = () => {
     if (validateForm()) {
-        onSave(updatedRecord);
+        // Implement save functionality, e.g., update the record in the database
       }
   };
 

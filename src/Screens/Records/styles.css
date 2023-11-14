@@ -1,108 +1,110 @@
 /* Records.css */
 
 .records-container {
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    background-color: #fff; 
-  }
-  
-  .records-header {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    margin-bottom: 20px;
-    text-align: center;
-  }
-  
-  .records-title {
-    font-size: 24px;
-    color: #333;
-    margin: 0;
-  }
-  
-  .back-button {
-    background-color: #ccc;
-    color: #333;
-    border: none;
-    border-radius: 5px;
-    padding: 8px 16px;
-    cursor: pointer;
-    font-size: 14px;
-  }
-  
-  .back-button:hover {
-    background-color: #bbb;
-  }
-  
-  .spacer {
-    flex-grow: 1;
-  }
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #fff; 
+}
 
-  .records-list {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .record-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: relative;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    padding: 10px;
-    margin-bottom: 10px;
-  }
-  
-  .record-number {
-    font-size: 18px;
-    font-weight: bold;
-    color: #fff;
-    background-color: #000; /* Background color for the entire left part of the block */
-    border-radius: 5px; /* Rounded corners for the entire block */
-    padding: 8px;
-  }
-  
-  .record-details {
-    flex-grow: 1;
-  }
-  
-  .edit-button {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    padding: 8px 16px;
-    cursor: pointer;
-    font-size: 14px;
-    position: absolute;
-    top: 0;
-    right: 0;
-    margin-right: 2%;
-    margin-top:2%;
-  }
-  
-  .edit-button:hover {
-    background-color: #0056b3;
-  }
-  
-  button {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    padding: 8px 16px;
-    cursor: pointer;
-    font-size: 14px;
-    align-self: flex-end; /* Align button to the top right */
-    margin-top: 5px; /* Add margin for spacing */
-  }
-  
-  button:hover {
-    background-color: #0056b3;
-  }
-  
+.records-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.records-title {
+  font-size: 24px;
+  color: #333;
+  margin: 0;
+}
+
+.back-button {
+  background-color: #ccc;
+  color: #333;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.back-button:hover {
+  background-color: #bbb;
+}
+
+.spacer {
+  flex-grow: 1;
+}
+
+.records-list {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.record-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.record-number {
+  font-size: 18px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #000; /* Background color for the entire left part of the block */
+  border-radius: 5px; /* Rounded corners for the entire block */
+  padding: 8px;
+  margin-left: 5%;
+}
+
+.record-details {
+  flex-grow: 1;
+  margin-right: 5%;
+}
+
+.edit-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 14px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-right: 2%;
+  margin-top:2%;
+}
+
+.edit-button:hover {
+  background-color: #0056b3;
+}
+
+button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 14px;
+  align-self: flex-end; /* Align button to the top right */
+  margin-top: 5px; /* Add margin for spacing */
+}
+
+button:hover {
+  background-color: #0056b3;
+}

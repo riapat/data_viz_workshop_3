@@ -19,11 +19,9 @@ const Records = () => {
     <div className="records-container">
       <div className="records-header">
         <h1 className="records-title">Records</h1>
-        <div className="spacer"></div>
-        <button className="back-button"> Back </button>
       </div>
       <div className="records-list">
-        {records.map((record) => (
+        {/* {records.map((record) => (
           <div key={record.id} className="record-item">
             <div className="record-number">{record.id}</div>
             <div className="record-details">
@@ -34,7 +32,7 @@ const Records = () => {
             </div>
             <button className="edit-button" onClick={() => handleEdit(record.id)}>Edit</button>
           </div>
-        ))}
+        ))} */}
       </div>
     </div>
   );
