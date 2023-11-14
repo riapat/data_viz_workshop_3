@@ -3,17 +3,20 @@ import React, { useState, useEffect } from 'react';
 import './styles.css'; // Import your styles.css file
 
 import { useParams, useNavigate, useLocation } from "react-router-dom";
+import { useDispatch, useSelector } from 'react-redux';
+import { setRecord, updateRecords } from '../../Redux/recordSlice';
 
 const UpdateRecord = ({ onCancel, onSave }) => {
   const navigate = useNavigate();
   //location is used to get the state passed from the previous page
   const location = useLocation();
-  const { record } = location.state || {};
-  // params is used to get the id from the url
-  const { id } = useParams();
+  const dispatch = useDispatch();
+  const selector = useSelector((state) => state);
+
+  const { record, index } = location.state || {};
+  // params is used to get the index from the record in array
 
   const [updatedRecord, setUpdatedRecord] = useState({
-    id: record.id,
     name: record.name,
     dateCompleted: record.dateCompleted,
     rating: record.rating,
@@ -30,7 +33,6 @@ const UpdateRecord = ({ onCancel, onSave }) => {
   useEffect(() => {
     if (record) {
       setUpdatedRecord({
-        id: record.id,
         name: record.name,
         dateCompleted: record.dateCompleted,
         rating: record.rating,
@@ -88,7 +90,10 @@ const UpdateRecord = ({ onCancel, onSave }) => {
 
   const handleSave = () => {
     if (validateForm()) {
-        // onSave(updatedRecord);
+        dispatch(setRecord(updatedRecord));
+        dispatch(updateRecords({record: updatedRecord, index}));
+        console.log(updatedRecord);
+        console.log(selector.record.records);
       }
     navigate('/records');
   };

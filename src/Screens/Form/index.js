@@ -1,7 +1,12 @@
 import React, {useState} from 'react';
 import styles from './styles.css';
+import { setRecord, setRecords } from '../../Redux/recordSlice';
+import { useDispatch, useSelector } from 'react-redux';
 
 const Form = () => {
+    const dispatch = useDispatch();
+    const recordSelector = useSelector((state) => state);
+
     const [formData, setFormData] = useState({
         name: '',
         dateCompleted: '',
@@ -22,7 +27,7 @@ const Form = () => {
             ...prevState,
             [name]: value,
         }));
-
+        
         setFormErrors((prevErrors) => ({
             ...prevErrors,
             [name]: '',
@@ -55,11 +60,14 @@ const Form = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(formData);
+        // preventDefault prevents the form from refreshing the page
 
         if (validateForm()) {
-            // Form is valid, log the data and show an alert
-            console.log(formData);
+            // Updates the Redux store with the new record using the setRecord action creator
+            dispatch(setRecord(formData));
+            dispatch(setRecords(formData));
+            console.log(recordSelector);
+
             setFormData({
               name: '',
               dateCompleted: '',
@@ -67,14 +75,7 @@ const Form = () => {
               notes: '',
             });
             alert('Information logged in Records!');
-          }
-
-        setFormData({
-            name: '',
-            dateCompleted: '',
-            rating: 1,
-            notes: '',
-        });
+        }
     };
 
     return (
