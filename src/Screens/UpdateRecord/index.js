@@ -4,7 +4,6 @@ import './styles.css'; // Import your styles.css file
 
 const UpdateRecord = ({ record, onCancel, onSave }) => {
   const [updatedRecord, setUpdatedRecord] = useState({
-    id: record.id,
     name: record.name,
     dateCompleted: record.dateCompleted,
     rating: record.rating,
